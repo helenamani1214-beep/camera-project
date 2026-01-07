@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camera Test</title>
+</head>
+<body>
+    <h2>Camera Test Page</h2>
+    <p>Open this on your phone</p>
+    
+    <video id="video" width="400" autoplay></video>
+    <br>
+    <button onclick="start()">Start Camera</button>
+    
+    <script>
+        const video = document.getElementById('video');
+        
+        function start() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+                alert("Camera working!");
+            })
+            .catch(err => {
+                alert("Camera error: " + err.message);
+            });
+        }
